@@ -29,9 +29,7 @@ export default function Action({
 }) {
   return (
     // <div style={{ height: 120 }}>
-    //   <button className={"button red"} onClick={leave}>
-    //     LEAVE
-    //   </button>
+ 
     //   <button className={"button blue"} onClick={toggleMic}>
     //     toggleMic
     //   </button>
@@ -114,7 +112,7 @@ export default function Action({
         <div className="mic icon">
           <MicOutlinedIcon />
         </div>
-        <div className="end-call">
+        <div className="end-call icon" onClick={leave}>
           <span style={{ color: "white" }}>End call</span>
         </div>
         <div className="full-screen icon">

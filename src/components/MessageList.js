@@ -17,7 +17,9 @@ export const MessageList = ({ messages }) => {
 
         return (
           <div className="mess-list">
-            <p style={{ margin: 0, padding: 0 }}>{senderName}</p>
+            <p style={{ margin: 0, padding: 0, color: "#909195" }}>
+              {senderName}
+            </p>
             <div
               style={{
                 margin: 8,
@@ -27,20 +29,32 @@ export const MessageList = ({ messages }) => {
                 overflow: "hidden",
                 padding: 8,
                 color: "#fff",
+                borderColor: "#313237",
               }}
               key={i}
             >
-              <h3 style={{ margin: 0, padding: 0, marginTop: 4 }}>{text}</h3>
-              <p
-                style={{
-                  margin: 0,
-                  padding: 0,
-                  opacity: 0.6,
-                  marginTop: 4,
-                }}
-              >
-                {formatAMPM(new Date(timestamp))}
-              </p>
+              <div className="mess-field" style={{ paddingLeft: 20 }}>
+                <h3
+                  style={{
+                    margin: 0,
+                    padding: 0,
+
+                    marginTop: 4,
+                  }}
+                >
+                  {text}
+                </h3>
+                <p
+                  style={{
+                    margin: 0,
+                    padding: 0,
+                    opacity: 0.6,
+                    marginTop: 4,
+                  }}
+                >
+                  {formatAMPM(new Date(timestamp))}
+                </p>
+              </div>
             </div>
           </div>
         );

@@ -40,4 +40,11 @@
 .mess-type .send-button {
   background-color: #38c180;
   cursor: pointer;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  outline: none;
+  border: none;
+  border-radius: 6px;
 }
