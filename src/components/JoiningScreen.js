@@ -108,12 +108,14 @@ export function JoiningScreen({
 
       const videoTrack = videoTracks.length ? videoTracks[0] : null;
 
-      videoPlayerRef.current.srcObject = new MediaStream([videoTrack]);
-      videoPlayerRef.current.play();
-      if (!videoTrack) {
-        setWebcamOn(false);
+      if (videoPlayerRef.current) {
+        videoPlayerRef.current.srcObject = new MediaStream([videoTrack]);
+        videoPlayerRef.current.play();
+        if (!videoTrack) {
+          setWebcamOn(false);
+        }
+        setVideoTrack(videoTrack);
       }
-      setVideoTrack(videoTrack);
     }
   };
 
@@ -225,7 +227,7 @@ export function JoiningScreen({
                 <Grid
                   container
                   alignItems="center"
-                  justify="center"
+                  justifyContent="center"
                   spacing={2}
                 >
                   <Grid item>

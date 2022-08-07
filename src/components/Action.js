@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import { MicOutlinedIcon, CallEndIcon } from "@mui/icons-material";
 import MicOutlinedIcon from "@mui/icons-material/MicOutlined";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
@@ -8,6 +8,12 @@ import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlin
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import PresentToAllOutlinedIcon from "@mui/icons-material/PresentToAllOutlined";
 import "../style/index.css";
+import VideocamOffOutlinedIcon from "@mui/icons-material/VideocamOffOutlined";
+import MicOffOutlinedIcon from "@mui/icons-material/MicOffOutlined";
+import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
+
+var elem = document.documentElement;
+
 export default function Action({
   leave,
   toggleMic,
@@ -26,21 +32,45 @@ export default function Action({
   connectMetting,
   participantViewVisible,
   connectTo,
+  micOn,
+  setMicOn,
+  webcamOn,
+  setWebCamOn,
 }) {
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [present, setPresent] = useState(false);
+
+  const goFullScreen = () => {
+    setIsFullScreen(true);
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  };
+
+  const closeScreen = async () => {
+    setIsFullScreen(false);
+    if (!document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      /* IE11 */
+      document.msExitFullscreen();
+    }
+  };
+
   return (
     // <div style={{ height: 120 }}>
- 
-    //   <button className={"button blue"} onClick={toggleMic}>
-    //     toggleMic
-    //   </button>
-    //   <button
-    //     className={"button blue"}
-    //     onClick={() => {
-    //       toggleWebcam();
-    //     }}
-    //   >
-    //     toggleWebcam
-    //   </button>
+
+    //
+
     //   <button className={"button blue"} onClick={toggleScreenShare}>
     //     toggleScreenShare
     //   </button>
@@ -106,20 +136,39 @@ export default function Action({
         <div className="muted icon">
           <VolumeOffOutlinedIcon />
         </div>
-        <div className="camera icon">
-          <VideocamOutlinedIcon />
+        <div
+          className="camera icon"
+          onClick={() => {
+            setWebCamOn((prev) => !prev);
+            toggleWebcam();
+          }}
+        >
+          {webcamOn ? <VideocamOutlinedIcon /> : <VideocamOffOutlinedIcon />}
         </div>
-        <div className="mic icon">
-          <MicOutlinedIcon />
+        <div
+          className="mic icon"
+          onClick={() => {
+            setMicOn((prev) => !prev);
+            toggleMic();
+          }}
+        >
+          {!micOn ? <MicOffOutlinedIcon /> : <MicOutlinedIcon />}
         </div>
         <div className="end-call icon" onClick={leave}>
           <span style={{ color: "white" }}>End call</span>
         </div>
-        <div className="full-screen icon">
-          <FullscreenOutlinedIcon />
+        <div
+          className="full-screen icon"
+          onClick={!isFullScreen ? goFullScreen : closeScreen}
+        >
+          {!isFullScreen ? (
+            <FullscreenOutlinedIcon />
+          ) : (
+            <FullscreenExitOutlinedIcon />
+          )}
         </div>
-        <div className="present icon">
-          <PresentToAllOutlinedIcon />
+        <div className="present icon" onClick={toggleScreenShare}>
+          {!present ? <PresentToAllOutlinedIcon /> : <CancelPresentationIcon />}
         </div>
         <div className="more icon">
           <MoreHorizOutlinedIcon />

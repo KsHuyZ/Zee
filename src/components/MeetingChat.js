@@ -8,7 +8,7 @@ import { BsEmojiSmileFill } from "react-icons/bs";
 const borderRadius = 8;
 const primary = "#202329";
 
-function MeetingChat({ tollbarHeight }) {
+function MeetingChat({}) {
   const { publish, messages } = usePubSub("CHAT", {});
   const [message, setMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -38,14 +38,19 @@ function MeetingChat({ tollbarHeight }) {
         backgroundColor: primary,
         overflowY: "scroll",
         height: "100%",
+        position: "relative",
       }}
     >
       <div style={{ height: "90%" }} className="mess-list">
         <MessageList messages={messages} />
       </div>
-
+      {showEmojiPicker && (
+        <div className="picker" style={{ position: "absolute", top: "30%" }}>
+          <Picker onEmojiClick={handleEmojiClick} />
+        </div>
+      )}
       <div style={{ display: "flex" }} className="mess-type">
-        <div className="input-field" >
+        <div className="input-field" style={{ position: "relative" }}>
           <div className="button-container">
             <div
               className="emoji"
@@ -54,19 +59,10 @@ function MeetingChat({ tollbarHeight }) {
                 top: 4,
                 right: 10,
                 cursor: "pointer",
-                color: showEmojiPicker ? "#a3a3a5" : "",
+                color: showEmojiPicker ? "#38c180" : "#a3a3a5",
               }}
             >
               <BsEmojiSmileFill onClick={handleEmojiPickerhideShow} />
-
-              {showEmojiPicker && (
-                <div
-                  className="picker"
-                  style={{ position: "absolute", top: 0, left: 0 }}
-                >
-                  <Picker onEmojiClick={handleEmojiClick} />
-                </div>
-              )}
             </div>
           </div>
           <input
