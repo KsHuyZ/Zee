@@ -11,6 +11,7 @@ import ParticipantsView from "./ParticipantsView";
 import MeetingChat from "./MeetingChat";
 import Action from "./Action";
 import ConnectionsView from "./ConnectionViews";
+import ParticipantsList from "./ParticipantsList";
 
 const ExternalVideo = () => {
   const [{ link, playing }, setVideoInfo] = useState({
@@ -360,6 +361,7 @@ function MeetingView({
             setWebCamOn={setWebcamOn}
           />
         </div>
+        {/* <ParticipantsList /> */}
         <MeetingChat tollbarHeight={tollbarHeight} />
       </div>
     </div>

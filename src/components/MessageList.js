@@ -11,7 +11,7 @@ function formatAMPM(date) {
 
 export const MessageList = ({ messages }) => {
   return (
-    <div>
+    <div className="">
       {messages?.map((message, i) => {
         const { senderName, message: text, timestamp } = message;
 

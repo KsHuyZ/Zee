@@ -4,13 +4,11 @@ import ReactPlayer from "react-player";
 import CircularProgress from "@mui/material/CircularProgress";
 import ScreenShare from "./ScreenShare";
 
-
 const chunk = (arr) => {
-    const newArr = [];
-    while (arr.length) newArr.push(arr.splice(0, 3));
-    return newArr;
-  };
-  
+  const newArr = [];
+  while (arr.length) newArr.push(arr.splice(0, 3));
+  return newArr;
+};
 
 const ParticipantView = ({ participantId, isLoading }) => {
   const webcamRef = useRef(null);
@@ -95,7 +93,7 @@ const ParticipantView = ({ participantId, isLoading }) => {
   return (
     <div
       style={{
-        width:400,
+        width: 400,
         backgroundColor: "#202329",
         borderRadius: 8,
         overflow: "hidden",
@@ -228,4 +226,4 @@ const ParticipantsView = ({ isLoading }) => {
   );
 };
 
-export default ParticipantsView
+export default ParticipantsView;

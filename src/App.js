@@ -44,6 +44,7 @@ const App = () => {
         micEnabled: micOn,
         webcamEnabled: webcamOn,
         name: participantName ? participantName : "TestUser",
+        // avatar: "https://i.pravatar.cc/300",
       }}
       token={token}
       reinitialiseMeetingOnConfigChange={true}

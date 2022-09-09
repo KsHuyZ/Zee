@@ -36,12 +36,11 @@ function MeetingChat({}) {
         marginLeft: borderRadius,
         width: 400,
         backgroundColor: primary,
-        overflowY: "scroll",
         height: "100%",
         position: "relative",
       }}
     >
-      <div style={{ height: "90%" }} className="mess-list">
+      <div style={{ height: "84vh" }} className="message-list">
         <MessageList messages={messages} />
       </div>
       {showEmojiPicker && (
@@ -50,7 +49,10 @@ function MeetingChat({}) {
         </div>
       )}
       <div style={{ display: "flex" }} className="mess-type">
-        <div className="input-field" style={{ position: "relative" }}>
+        <div
+          className="input-field"
+          style={{ position: "relative", width: "70%" }}
+        >
           <div className="button-container">
             <div
               className="emoji"
@@ -66,6 +68,7 @@ function MeetingChat({}) {
             </div>
           </div>
           <input
+            style={{ width: "100%" }}
             className="message-input"
             value={message}
             placeholder="Type a message..."
@@ -75,7 +78,11 @@ function MeetingChat({}) {
             }}
           />
         </div>
-        <button className={"button default send-button"} onClick={sendChat}>
+        <button
+          className={"button default send-button"}
+          onClick={sendChat}
+          style={{ width: "20%" }}
+        >
           Send
         </button>
       </div>
